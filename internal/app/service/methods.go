@@ -2,11 +2,12 @@ package service
 
 import (
 	"fmt"
-	"github.com/mkorobovv/gogram/internal/app/domain"
 	"log"
 	"os"
 	"sync"
 	"time"
+
+	"github.com/mkorobovv/gogram/internal/app/domain"
 )
 
 func (svc *Service) Start() {
@@ -15,6 +16,7 @@ func (svc *Service) Start() {
 
 	for range ticker.C {
 		var wg sync.WaitGroup
+
 		wg.Add(2)
 
 		var (
@@ -24,11 +26,13 @@ func (svc *Service) Start() {
 
 		go func(wg *sync.WaitGroup) {
 			defer wg.Done()
+
 			followings = svc.instaProvider.GetFollowings()
 		}(&wg)
 
 		go func(wg *sync.WaitGroup) {
 			defer wg.Done()
+
 			followers = svc.instaProvider.GetFollowers()
 		}(&wg)
 
@@ -65,11 +69,14 @@ func (svc *Service) Start() {
 	}
 }
 
+const filename = "unfollowed.txt"
+
 func writeUnfollowed(unfollowed []domain.InstagramUser) error {
-	file, err := os.OpenFile("unfollowed.txt", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
+	file, err := os.OpenFile(filename, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0o755) //nolint:gosec
 	if err != nil {
 		return err
 	}
+
 	defer func() {
 		err = file.Close()
 		if err != nil {

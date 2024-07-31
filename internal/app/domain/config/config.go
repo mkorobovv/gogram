@@ -1,7 +1,7 @@
 package config
 
 type Config struct {
-	Application Application `yaml:"application""`
+	Application Application `yaml:"application"`
 	Providers   Providers   `yaml:"providers"`
 }
 

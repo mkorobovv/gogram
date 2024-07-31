@@ -1,9 +1,10 @@
 package insta_provider
 
 import (
+	"log"
+
 	"github.com/Davincible/goinsta/v3"
 	"github.com/mkorobovv/gogram/internal/app/domain/config"
-	"log"
 )
 
 type InstaProvider struct {
