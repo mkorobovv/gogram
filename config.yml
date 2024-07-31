@@ -1,0 +1,9 @@
+application:
+  name: "gogram"
+  version: "1.0.0"
+
+providers:
+  instaProvider:
+    basicAuth:
+      username: "INSTA_PROVIDER_USERNAME"
+      password: "INSTA_PROVIDER_PASSWORD"
