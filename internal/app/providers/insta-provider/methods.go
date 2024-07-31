@@ -5,10 +5,8 @@ import (
 	"github.com/mkorobovv/gogram/internal/app/domain"
 )
 
-const defaultInstagramLimit = 200
-
 func (prv *InstaProvider) GetFollowings() []domain.InstagramUser {
-	users := make([]domain.InstagramUser, 0, defaultInstagramLimit)
+	users := make([]domain.InstagramUser, 0)
 
 	userFollowings := prv.accountManager.Following("", goinsta.LatestOrder)
 
@@ -28,7 +26,7 @@ func (prv *InstaProvider) GetFollowings() []domain.InstagramUser {
 }
 
 func (prv *InstaProvider) GetFollowers() []domain.InstagramUser {
-	users := make([]domain.InstagramUser, 0, defaultInstagramLimit)
+	users := make([]domain.InstagramUser, 0)
 
 	userFollowers := prv.accountManager.Followers("")
 
